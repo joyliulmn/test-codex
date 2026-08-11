@@ -1,14 +1,13 @@
 from __future__ import annotations
 
 from datetime import datetime
-from pathlib import Path
 import time
 
 import pandas as pd
 from tqdm import tqdm
 
 from .db import connect
-from .source import fetch_history, fetch_spot
+from .source import fetch_history, fetch_spot, fetch_universe
 
 DAILY_COLS = [
     "trade_date", "code", "name", "open", "high", "low", "close", "pre_close",
@@ -48,14 +47,14 @@ def update_today() -> int:
         return _upsert_daily(conn, df)
 
 
-def _universe_from_spot() -> pd.DataFrame:
-    df = fetch_spot()[["code", "name"]].drop_duplicates("code")
-    return df.sort_values("code").reset_index(drop=True)
+def _universe() -> pd.DataFrame:
+    """Use the dedicated code/name endpoint so bootstrap does not depend on spot quotes."""
+    return fetch_universe()
 
 
 def bootstrap_history(start: str = "20200101", end: str | None = None, resume: bool = True, sleep_s: float = 0.12) -> dict:
     end = end or datetime.now().strftime("%Y%m%d")
-    universe = _universe_from_spot()
+    universe = _universe()
     ok = failed = skipped = rows_written = 0
 
     with connect() as conn:
