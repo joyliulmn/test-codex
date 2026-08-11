@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 import time
 
 import pandas as pd
@@ -52,8 +53,17 @@ def _universe() -> pd.DataFrame:
     return fetch_universe()
 
 
+def _default_bootstrap_end() -> str:
+    """Avoid treating an in-progress China trading day as a completed daily bar."""
+    now_cn = datetime.now(ZoneInfo("Asia/Shanghai"))
+    effective = now_cn
+    if (now_cn.hour, now_cn.minute) < (15, 30):
+        effective = now_cn - timedelta(days=1)
+    return effective.strftime("%Y%m%d")
+
+
 def bootstrap_history(start: str = "20200101", end: str | None = None, resume: bool = True, sleep_s: float = 0.12) -> dict:
-    end = end or datetime.now().strftime("%Y%m%d")
+    end = end or _default_bootstrap_end()
     universe = _universe()
     ok = failed = skipped = rows_written = 0
 
