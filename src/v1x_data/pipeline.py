@@ -42,7 +42,14 @@ def _upsert_daily(conn, df: pd.DataFrame) -> int:
     return len(rows)
 
 
+def _china_now() -> datetime:
+    return datetime.now(ZoneInfo("Asia/Shanghai"))
+
+
 def update_today() -> int:
+    now_cn = _china_now()
+    if (now_cn.hour, now_cn.minute) < (15, 30):
+        raise RuntimeError("China A-share daily bar is still in progress; retry after 15:30 Asia/Shanghai")
     df = fetch_spot()
     with connect() as conn:
         return _upsert_daily(conn, df)
@@ -55,7 +62,7 @@ def _universe() -> pd.DataFrame:
 
 def _default_bootstrap_end() -> str:
     """Avoid treating an in-progress China trading day as a completed daily bar."""
-    now_cn = datetime.now(ZoneInfo("Asia/Shanghai"))
+    now_cn = _china_now()
     effective = now_cn
     if (now_cn.hour, now_cn.minute) < (15, 30):
         effective = now_cn - timedelta(days=1)
