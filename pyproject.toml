@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "v1x-a-share-data"
+version = "0.1.0"
+description = "V1.X full-market A-share OHLCV data layer and first-pass scanner"
+requires-python = ">=3.11"
+dependencies = [
+  "akshare>=1.16.0",
+  "pandas>=2.2.0",
+  "numpy>=1.26.0",
+  "pyarrow>=16.0.0",
+  "tenacity>=8.2.0",
+  "tqdm>=4.66.0",
+]
+
+[project.scripts]
+v1xdata = "v1x_data.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
