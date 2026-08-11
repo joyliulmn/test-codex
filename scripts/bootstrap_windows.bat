@@ -29,10 +29,18 @@ echo [3/6] Installing V1.X dependencies...
 python -m pip install -e .
 if errorlevel 1 goto fail
 
-echo [4/6] Downloading current A-share market snapshot...
+echo [4/6] Trying current A-share market snapshot...
 v1xdata update
-if errorlevel 1 goto fail
+if errorlevel 1 goto spot_warn
+goto history
 
+:spot_warn
+echo.
+echo [WARN] Current snapshot could not be downloaded. Continuing with historical bootstrap.
+echo [WARN] The daily updater can retry the snapshot later.
+echo.
+
+:history
 echo [5/6] Backfilling historical daily bars from 2020. This can take a long time and is resumable...
 v1xdata bootstrap --start 20200101 --resume
 if errorlevel 1 goto fail
