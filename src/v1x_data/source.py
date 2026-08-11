@@ -50,10 +50,8 @@ def _numeric(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-@retry(stop=stop_after_attempt(4), wait=wait_exponential(multiplier=1, min=2, max=20))
-def fetch_spot() -> pd.DataFrame:
-    """Fetch one full-market Shanghai/Shenzhen/Beijing A-share snapshot."""
-    df = ak.stock_zh_a_spot_em().rename(columns=SPOT_RENAME)
+def _normalize_em_spot(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.rename(columns=SPOT_RENAME)
     keep = [c for c in SPOT_RENAME.values() if c in df.columns]
     df = df[keep].copy()
     df["code"] = df["code"].astype(str).str.zfill(6)
@@ -61,7 +59,67 @@ def fetch_spot() -> pd.DataFrame:
     return _numeric(df)
 
 
-@retry(stop=stop_after_attempt(4), wait=wait_exponential(multiplier=1, min=2, max=30))
+def _normalize_sina_spot(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.rename(columns=SPOT_RENAME).copy()
+    if "code" not in df.columns:
+        raise RuntimeError("Sina spot response did not include code")
+    df["code"] = (
+        df["code"].astype(str).str.lower().str.replace(r"^(sh|sz|bj)", "", regex=True).str.zfill(6)
+    )
+    # Sina reports volume in shares; Eastmoney reports hands. Keep the database in hands.
+    if "volume" in df.columns:
+        df["volume"] = pd.to_numeric(df["volume"], errors="coerce") / 100.0
+    df["trade_date"] = date.today().isoformat()
+    keep = [c for c in [*SPOT_RENAME.values(), "trade_date"] if c in df.columns]
+    return _numeric(df[keep].copy())
+
+
+def _fetch_em_split() -> pd.DataFrame:
+    """Fetch Eastmoney by exchange to avoid one very large full-market request."""
+    parts = []
+    for func in (ak.stock_sh_a_spot_em, ak.stock_sz_a_spot_em, ak.stock_bj_a_spot_em):
+        parts.append(func())
+    return _normalize_em_spot(pd.concat(parts, ignore_index=True))
+
+
+@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=12), reraise=True)
+def _fetch_em_split_retry() -> pd.DataFrame:
+    return _fetch_em_split()
+
+
+@retry(stop=stop_after_attempt(2), wait=wait_exponential(multiplier=1, min=3, max=10), reraise=True)
+def _fetch_sina_retry() -> pd.DataFrame:
+    return _normalize_sina_spot(ak.stock_zh_a_spot())
+
+
+def fetch_spot() -> pd.DataFrame:
+    """Fetch one full-market A-share snapshot with provider fallback.
+
+    Primary path uses three smaller Eastmoney exchange calls; if that still times out,
+    fall back to Sina so one provider outage does not stop the local data pipeline.
+    """
+    try:
+        return _fetch_em_split_retry()
+    except Exception as em_exc:
+        try:
+            return _fetch_sina_retry()
+        except Exception as sina_exc:
+            raise RuntimeError(
+                f"Both spot providers failed. Eastmoney: {em_exc!r}; Sina: {sina_exc!r}"
+            ) from sina_exc
+
+
+@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=12), reraise=True)
+def fetch_universe() -> pd.DataFrame:
+    """Fetch all Shanghai/Shenzhen/Beijing A-share codes and names."""
+    df = ak.stock_info_a_code_name().copy()
+    if "code" not in df.columns or "name" not in df.columns:
+        raise RuntimeError("A-share universe response did not include code/name")
+    df["code"] = df["code"].astype(str).str.zfill(6)
+    return df[["code", "name"]].drop_duplicates("code").sort_values("code").reset_index(drop=True)
+
+
+@retry(stop=stop_after_attempt(4), wait=wait_exponential(multiplier=1, min=2, max=30), reraise=True)
 def fetch_history(code: str, start: str, end: str) -> pd.DataFrame:
     """Fetch unadjusted daily bars for one stock from Eastmoney via AKShare."""
     df = ak.stock_zh_a_hist(
