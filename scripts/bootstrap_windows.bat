@@ -2,27 +2,19 @@
 setlocal
 cd /d "%~dp0\.."
 
+echo [0/6] Checking Python 3.11...
 where py >nul 2>nul
-if errorlevel 1 (
-  echo [ERROR] Python launcher ^"py^" was not found.
-  echo Please install Python 3.11 64-bit first, then run this file again.
-  echo Recommended: Python 3.11.9 Windows installer (64-bit).
-  pause
-  exit /b 1
-)
+if errorlevel 1 goto :no_py
 
-py -3.11 --version >nul 2>nul
-if errorlevel 1 (
-  echo [ERROR] Python 3.11 was not found by the Python launcher.
-  echo Please install Python 3.11 64-bit first, then run this file again.
-  pause
-  exit /b 1
-)
+py -3.11 --version
+if errorlevel 1 goto :no_py311
 
 if not exist .venv (
   echo [1/6] Creating Python virtual environment...
   py -3.11 -m venv .venv
   if errorlevel 1 goto :fail
+) else (
+  echo [1/6] Python virtual environment already exists.
 )
 
 call .venv\Scripts\activate.bat
@@ -55,8 +47,24 @@ echo [SUCCESS] V1.X data environment initialized successfully.
 pause
 exit /b 0
 
+:no_py
+echo.
+echo [ERROR] Python launcher py was not found.
+echo Install Python 3.11 64-bit first and run this file again.
+echo Recommended installer: Python 3.11.9 Windows 64-bit.
+pause
+exit /b 1
+
+:no_py311
+echo.
+echo [ERROR] Python 3.11 was not found by the Python launcher.
+echo Install Python 3.11 64-bit first and run this file again.
+pause
+exit /b 1
+
 :fail
 echo.
-echo [ERROR] Setup stopped at the failed step above. Take a screenshot and send it for troubleshooting.
+echo [ERROR] Setup stopped at the failed step above.
+echo Take a screenshot and send it for troubleshooting.
 pause
 exit /b 1
