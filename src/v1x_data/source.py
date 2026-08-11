@@ -109,14 +109,35 @@ def fetch_spot() -> pd.DataFrame:
             ) from sina_exc
 
 
-@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=12), reraise=True)
-def fetch_universe() -> pd.DataFrame:
-    """Fetch all Shanghai/Shenzhen/Beijing A-share codes and names."""
-    df = ak.stock_info_a_code_name().copy()
-    if "code" not in df.columns or "name" not in df.columns:
+def _normalize_universe(df: pd.DataFrame) -> pd.DataFrame:
+    """Normalize a code/name table from any supported provider."""
+    work = df.rename(columns=SPOT_RENAME).copy()
+    if "code" not in work.columns or "name" not in work.columns:
         raise RuntimeError("A-share universe response did not include code/name")
-    df["code"] = df["code"].astype(str).str.zfill(6)
-    return df[["code", "name"]].drop_duplicates("code").sort_values("code").reset_index(drop=True)
+    work["code"] = (
+        work["code"].astype(str).str.lower().str.replace(r"^(sh|sz|bj)", "", regex=True).str.zfill(6)
+    )
+    return work[["code", "name"]].dropna().drop_duplicates("code").sort_values("code").reset_index(drop=True)
+
+
+@retry(stop=stop_after_attempt(2), wait=wait_exponential(multiplier=1, min=2, max=8), reraise=True)
+def _fetch_official_universe_retry() -> pd.DataFrame:
+    """Try AKShare's dedicated code/name endpoint first."""
+    return _normalize_universe(ak.stock_info_a_code_name())
+
+
+def fetch_universe() -> pd.DataFrame:
+    """Fetch all Shanghai/Shenzhen/Beijing A-share codes and names with fallback.
+
+    Some networks/proxies terminate the SSE code-list HTTPS connection. If the
+    dedicated universe endpoint fails, reuse the resilient spot-provider path and
+    keep only code/name. Intraday quotes are safe here because no prices are stored.
+    """
+    try:
+        return _fetch_official_universe_retry()
+    except Exception:
+        spot = fetch_spot()
+        return _normalize_universe(spot)
 
 
 @retry(stop=stop_after_attempt(4), wait=wait_exponential(multiplier=1, min=2, max=30), reraise=True)
