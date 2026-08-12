@@ -9,6 +9,7 @@ from pathlib import Path
 
 import akshare as ak
 import pandas as pd
+import requests
 
 from v1x_data.pipeline import _upsert_daily
 
@@ -17,6 +18,18 @@ DAILY_COLS = [
     "trade_date", "code", "name", "open", "high", "low", "close", "pre_close",
     "pct_chg", "volume", "amount", "amplitude", "turnover_rate", "change_amount",
 ]
+_ORIGINAL_SESSION_REQUEST = requests.sessions.Session.request
+
+
+def configure_http_timeout(timeout_s: float) -> None:
+    """Apply a default Requests timeout so one stalled provider call cannot hang the whole recovery."""
+
+    def request_with_timeout(self, method, url, **kwargs):
+        if kwargs.get("timeout") is None:
+            kwargs["timeout"] = timeout_s
+        return _ORIGINAL_SESSION_REQUEST(self, method, url, **kwargs)
+
+    requests.sessions.Session.request = request_with_timeout
 
 
 def market_symbol(code: str) -> str:
@@ -146,6 +159,12 @@ def main() -> None:
     parser.add_argument("--sleep", type=float, default=3.0, help="Seconds to pause after each symbol.")
     parser.add_argument("--attempts", type=int, default=3, help="Fetch attempts per symbol.")
     parser.add_argument(
+        "--timeout",
+        type=float,
+        default=30.0,
+        help="Default HTTP connect/read timeout in seconds for provider requests.",
+    )
+    parser.add_argument(
         "--write",
         action="store_true",
         help="Actually write daily_bar and update bootstrap_state. Without this flag the run is read-only.",
@@ -158,8 +177,12 @@ def main() -> None:
         parser.error("--sleep must be >= 0")
     if args.attempts <= 0:
         parser.error("--attempts must be > 0")
+    if args.timeout <= 0:
+        parser.error("--timeout must be > 0")
     if not DB_PATH.exists():
         raise SystemExit(f"Database not found: {DB_PATH}")
+
+    configure_http_timeout(args.timeout)
 
     conn = sqlite3.connect(DB_PATH)
     try:
@@ -173,6 +196,7 @@ def main() -> None:
         print(f"FAILED TOTAL FOR RANGE = {total_failed}")
         print(f"THIS RUN CANDIDATES = {len(candidates)}")
         print(f"MODE = {'WRITE' if args.write else 'READ-ONLY DRY RUN'}")
+        print(f"HTTP TIMEOUT = {args.timeout:g}s")
         if not candidates:
             print("Nothing to recover.")
             return
