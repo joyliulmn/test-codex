@@ -33,6 +33,8 @@ def run_scan(lookback_rows_per_symbol: int = 80) -> Path:
 
     # V0.1 deliberately favors recall. Loud attacks and quiet price-efficiency
     # changes are separate discovery channels; neither is an automatic buy signal.
+    # For quiet rising, the core trigger is Delta versus the prior regime, not a
+    # static efficiency reading.
     latest["scan_score"] = (
         latest["pre_ignition_window"].fillna(False).astype(int) * 5
         + latest["quiet_rising_efficiency"].fillna(False).astype(int) * 4
@@ -55,8 +57,12 @@ def run_scan(lookback_rows_per_symbol: int = 80) -> Path:
         "trade_date", "code", "name", "close", "pct_chg", "amount", "turnover_rate",
         "attack_k", "days_since_attack", "retains_attack_close", "center_not_falling_5d",
         "volume_contracting_5d", "range_contracting_5d", "pre_ignition_window",
-        "ret_5d", "ret_10d", "path_efficiency_5d", "path_efficiency_10d",
-        "volume_intensity_5d", "near_or_breaks_20d_high", "price_efficiency_improving",
+        "ret_5d", "prior_ret_5d", "delta_net_displacement_5d", "ret_10d",
+        "path_efficiency_5d", "prior_path_efficiency_5d", "delta_path_efficiency_5d",
+        "path_efficiency_10d", "volume_intensity_5d", "prior_volume_intensity_5d",
+        "delta_volume_intensity_5d", "vp_conversion_efficiency_5d",
+        "prior_vp_conversion_efficiency_5d", "delta_vp_conversion_efficiency_5d",
+        "near_or_breaks_20d_high", "price_efficiency_improving",
         "quiet_rising_efficiency", "scan_score",
     ]
     cols = [c for c in cols if c in candidates.columns]
