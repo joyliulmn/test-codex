@@ -67,31 +67,55 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
     )
 
     # Quiet-rising / price-efficiency channel.
-    # V1.X should not only detect loud attacks. A stock can change state because
-    # similar participation starts producing more positive displacement, while
-    # price quietly solves old highs and the path remains low-friction.
+    # The key V1.X idea is CHANGE, not a static efficiency level. We therefore
+    # compare the current 5-day state with the immediately preceding 5-day state.
+    # Absolute levels remain only as quality floors; the trigger is the Delta.
     x["abs_ret_1d"] = x["ret_1d"].abs()
     x["path_length_5d"] = x.groupby("code")["abs_ret_1d"].transform(lambda s: s.rolling(5).sum())
     x["path_length_10d"] = x.groupby("code")["abs_ret_1d"].transform(lambda s: s.rolling(10).sum())
     x["path_efficiency_5d"] = x["ret_5d"] / x["path_length_5d"].replace(0, np.nan)
     x["path_efficiency_10d"] = x["ret_10d"] / x["path_length_10d"].replace(0, np.nan)
     x["volume_intensity_5d"] = x["vol_ma5"] / x["vol_ma20"].replace(0, np.nan)
+
+    # Prior comparable 5-day regime.
+    by_code = x.groupby("code", group_keys=False)
+    x["prior_ret_5d"] = by_code["ret_5d"].shift(5)
+    x["prior_path_efficiency_5d"] = by_code["path_efficiency_5d"].shift(5)
+    x["prior_volume_intensity_5d"] = by_code["volume_intensity_5d"].shift(5)
+
+    # A simple within-stock conversion proxy: net price displacement generated
+    # per unit of normalized participation. Its absolute value is not the signal;
+    # the change versus the prior regime is.
+    x["vp_conversion_efficiency_5d"] = x["ret_5d"] / x["volume_intensity_5d"].replace(0, np.nan)
+    x["prior_vp_conversion_efficiency_5d"] = by_code["vp_conversion_efficiency_5d"].shift(5)
+
+    x["delta_net_displacement_5d"] = x["ret_5d"] - x["prior_ret_5d"]
+    x["delta_path_efficiency_5d"] = x["path_efficiency_5d"] - x["prior_path_efficiency_5d"]
+    x["delta_volume_intensity_5d"] = x["volume_intensity_5d"] - x["prior_volume_intensity_5d"]
+    x["delta_vp_conversion_efficiency_5d"] = (
+        x["vp_conversion_efficiency_5d"] - x["prior_vp_conversion_efficiency_5d"]
+    )
+
     x["prior_20d_high"] = g["close"].transform(lambda s: s.shift(1).rolling(20).max())
     x["near_or_breaks_20d_high"] = x["close"] >= x["prior_20d_high"] * 0.98
 
-    prior_eff5 = x.groupby("code")["path_efficiency_5d"].shift(5)
+    # Delta-based improvement: current price displacement becomes materially more
+    # efficient than the prior 5-day regime, without requiring a loud volume burst.
     x["price_efficiency_improving"] = (
         (x["ret_5d"] > 0)
-        & (x["path_efficiency_5d"] >= 0.45)
-        & ((prior_eff5.isna()) | (x["path_efficiency_5d"] >= prior_eff5 + 0.10))
+        & (x["delta_net_displacement_5d"] > 0)
+        & (x["delta_path_efficiency_5d"] >= 0.08)
+        & (x["delta_vp_conversion_efficiency_5d"] >= 0.015)
     )
 
-    # Keep this first-pass rule recall-oriented. It is an entry channel for later
-    # V1.X reading, not an automatic buy signal.
+    # Keep this first-pass rule recall-oriented. Delta is the discovery trigger;
+    # current efficiency/structure are only quality controls before later V1.X reading.
     x["quiet_rising_efficiency"] = (
-        ((x["ret_5d"] >= 0.035) | (x["ret_10d"] >= 0.06))
-        & (x["path_efficiency_10d"] >= 0.40)
+        x["price_efficiency_improving"]
+        & ((x["ret_5d"] >= 0.025) | (x["ret_10d"] >= 0.05))
+        & (x["path_efficiency_10d"] >= 0.35)
         & x["volume_intensity_5d"].between(0.55, 1.50, inclusive="both")
+        & (x["delta_volume_intensity_5d"] <= 0.30)
         & x["center_not_falling_5d"]
         & (x["close_ma5"] >= x["close_ma10"])
         & x["near_or_breaks_20d_high"]
