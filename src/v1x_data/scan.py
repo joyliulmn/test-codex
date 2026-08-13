@@ -31,15 +31,19 @@ def run_scan(lookback_rows_per_symbol: int = 80) -> Path:
     latest_date = feat["trade_date"].max()
     latest = feat[feat["trade_date"] == latest_date].copy()
 
-    # V0.1 deliberately favors recall: recent attacks and pre-ignition windows enter the file.
+    # V0.1 deliberately favors recall. Loud attacks and quiet price-efficiency
+    # changes are separate discovery channels; neither is an automatic buy signal.
     latest["scan_score"] = (
         latest["pre_ignition_window"].fillna(False).astype(int) * 5
+        + latest["quiet_rising_efficiency"].fillna(False).astype(int) * 4
         + latest["attack_k"].fillna(False).astype(int) * 3
+        + latest["price_efficiency_improving"].fillna(False).astype(int) * 2
         + latest["retains_attack_close"].fillna(False).astype(int)
         + latest["center_not_falling_5d"].fillna(False).astype(int)
     )
     candidates = latest[
         latest["pre_ignition_window"].fillna(False)
+        | latest["quiet_rising_efficiency"].fillna(False)
         | latest["attack_k"].fillna(False)
         | latest["days_since_attack"].between(1, 5, inclusive="both").fillna(False)
     ].copy()
@@ -50,7 +54,10 @@ def run_scan(lookback_rows_per_symbol: int = 80) -> Path:
     cols = [
         "trade_date", "code", "name", "close", "pct_chg", "amount", "turnover_rate",
         "attack_k", "days_since_attack", "retains_attack_close", "center_not_falling_5d",
-        "volume_contracting_5d", "range_contracting_5d", "pre_ignition_window", "scan_score",
+        "volume_contracting_5d", "range_contracting_5d", "pre_ignition_window",
+        "ret_5d", "ret_10d", "path_efficiency_5d", "path_efficiency_10d",
+        "volume_intensity_5d", "near_or_breaks_20d_high", "price_efficiency_improving",
+        "quiet_rising_efficiency", "scan_score",
     ]
     cols = [c for c in cols if c in candidates.columns]
     path = OUTPUT_DIR / f"v1x_scan_{latest_date}.csv"
