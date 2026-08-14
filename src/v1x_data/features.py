@@ -25,13 +25,25 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
     prev_vol = g["volume"].shift(1)
     prev_close = g["close"].shift(1)
     x["volume_ratio_1d"] = x["volume"] / prev_vol.replace(0, np.nan)
-    x["attack_k"] = (
+
+    # Fire K is price-first. Current working definition: at least +5% and a bullish body.
+    # Volume is deliberately NOT a mandatory condition yet; it is tracked separately
+    # as confirmation/quality. This lets later blind tests decide whether volume should
+    # be part of the definition or only an upgrade.
+    x["fire_k"] = (
         (x["pct_chg"] >= 5.0)
-        & ((x["volume_ratio_1d"] >= 1.3) | (x["volume"] >= 1.3 * x["vol_ma5"]))
-        & (x["close"] > prev_close)
+        & (x["close"] > x["open"])
+    )
+    x["volume_wins_prev"] = x["volume"] > prev_vol
+    x["fire_k_dual_win"] = x["fire_k"] & x["volume_wins_prev"]
+    x["fire_k_volume_expanded"] = x["fire_k"] & (
+        (x["volume_ratio_1d"] >= 1.3) | (x["volume"] >= 1.3 * x["vol_ma5"])
     )
 
-    # How long since last attack, capped to a useful window.
+    # Backward-compatible name used by the current scan pipeline.
+    x["attack_k"] = x["fire_k"]
+
+    # How long since last Fire K / attack, capped to a useful window.
     def since_attack(group: pd.DataFrame) -> pd.Series:
         out = []
         last = None
