@@ -31,14 +31,15 @@ def run_scan(lookback_rows_per_symbol: int = 80) -> Path:
     latest_date = feat["trade_date"].max()
     latest = feat[feat["trade_date"] == latest_date].copy()
 
-    # V0.1 deliberately favors recall. Loud attacks and quiet price-efficiency
+    # V0.1 deliberately favors recall. Loud Fire K attacks and quiet price-efficiency
     # changes are separate discovery channels; neither is an automatic buy signal.
-    # For quiet rising, the core trigger is Delta versus the prior regime, not a
-    # static efficiency reading.
+    # Fire K is price-first (+5% bullish body). Volume confirmation is a quality
+    # upgrade, not a mandatory gate, until further blind testing settles the rule.
     latest["scan_score"] = (
         latest["pre_ignition_window"].fillna(False).astype(int) * 5
         + latest["quiet_rising_efficiency"].fillna(False).astype(int) * 4
-        + latest["attack_k"].fillna(False).astype(int) * 3
+        + latest["fire_k"].fillna(False).astype(int) * 3
+        + latest["fire_k_dual_win"].fillna(False).astype(int)
         + latest["price_efficiency_improving"].fillna(False).astype(int) * 2
         + latest["retains_attack_close"].fillna(False).astype(int)
         + latest["center_not_falling_5d"].fillna(False).astype(int)
@@ -46,7 +47,7 @@ def run_scan(lookback_rows_per_symbol: int = 80) -> Path:
     candidates = latest[
         latest["pre_ignition_window"].fillna(False)
         | latest["quiet_rising_efficiency"].fillna(False)
-        | latest["attack_k"].fillna(False)
+        | latest["fire_k"].fillna(False)
         | latest["days_since_attack"].between(1, 5, inclusive="both").fillna(False)
     ].copy()
     candidates = candidates.sort_values(
@@ -55,6 +56,7 @@ def run_scan(lookback_rows_per_symbol: int = 80) -> Path:
 
     cols = [
         "trade_date", "code", "name", "close", "pct_chg", "amount", "turnover_rate",
+        "fire_k", "volume_wins_prev", "fire_k_dual_win", "fire_k_volume_expanded",
         "attack_k", "days_since_attack", "retains_attack_close", "center_not_falling_5d",
         "volume_contracting_5d", "range_contracting_5d", "pre_ignition_window",
         "ret_5d", "prior_ret_5d", "delta_net_displacement_5d", "ret_10d",
