@@ -24,7 +24,17 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
 
     prev_vol = g["volume"].shift(1)
     prev_close = g["close"].shift(1)
+    prev_open = g["open"].shift(1)
     x["volume_ratio_1d"] = x["volume"] / prev_vol.replace(0, np.nan)
+
+    # Candle-body comparison is the price side of V1.X "dual win".
+    # Use the absolute real body so bullish/bearish dual-win facts are symmetric.
+    x["body_abs"] = (x["close"] - x["open"]).abs()
+    x["prev_body_abs"] = (prev_close - prev_open).abs()
+    x["body_wins_prev"] = x["body_abs"] > x["prev_body_abs"]
+    x["volume_wins_prev"] = x["volume"] > prev_vol
+    x["prev_bullish"] = prev_close > prev_open
+    x["prev_bearish"] = prev_close < prev_open
 
     # Fire K is price-first. Current working definition: at least +5% and a bullish body.
     # Volume is deliberately NOT a mandatory condition yet; it is tracked separately
@@ -34,8 +44,26 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
         (x["pct_chg"] >= 5.0)
         & (x["close"] > x["open"])
     )
-    x["volume_wins_prev"] = x["volume"] > prev_vol
-    x["fire_k_dual_win"] = x["fire_k"] & x["volume_wins_prev"]
+
+    # Dual-win facts: current real body exceeds the previous real body AND volume
+    # exceeds previous volume. Previous candle direction changes the interpretation,
+    # but not whether the dual win exists.
+    x["bullish_dual_win"] = (
+        (x["close"] > x["open"])
+        & x["body_wins_prev"]
+        & x["volume_wins_prev"]
+    )
+    x["bearish_dual_win"] = (
+        (x["close"] < x["open"])
+        & x["body_wins_prev"]
+        & x["volume_wins_prev"]
+    )
+    x["bullish_reversal_dual_win"] = x["bullish_dual_win"] & x["prev_bearish"]
+    x["bullish_continuation_dual_win"] = x["bullish_dual_win"] & x["prev_bullish"]
+    x["bearish_reversal_dual_win"] = x["bearish_dual_win"] & x["prev_bullish"]
+    x["bearish_continuation_dual_win"] = x["bearish_dual_win"] & x["prev_bearish"]
+
+    x["fire_k_dual_win"] = x["fire_k"] & x["bullish_dual_win"]
     x["fire_k_volume_expanded"] = x["fire_k"] & (
         (x["volume_ratio_1d"] >= 1.3) | (x["volume"] >= 1.3 * x["vol_ma5"])
     )
