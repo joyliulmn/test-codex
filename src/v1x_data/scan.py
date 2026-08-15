@@ -56,7 +56,11 @@ def run_scan(lookback_rows_per_symbol: int = 80) -> Path:
 
     cols = [
         "trade_date", "code", "name", "close", "pct_chg", "amount", "turnover_rate",
-        "fire_k", "volume_wins_prev", "fire_k_dual_win", "fire_k_volume_expanded",
+        "body_abs", "prev_body_abs", "body_wins_prev", "volume_wins_prev",
+        "bullish_dual_win", "bearish_dual_win",
+        "bullish_reversal_dual_win", "bullish_continuation_dual_win",
+        "bearish_reversal_dual_win", "bearish_continuation_dual_win",
+        "fire_k", "fire_k_dual_win", "fire_k_volume_expanded",
         "attack_k", "days_since_attack", "retains_attack_close", "center_not_falling_5d",
         "volume_contracting_5d", "range_contracting_5d", "pre_ignition_window",
         "ret_5d", "prior_ret_5d", "delta_net_displacement_5d", "ret_10d",
