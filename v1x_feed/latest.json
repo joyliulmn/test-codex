@@ -1,8 +1,11 @@
 {
+  "schema": "v1x-feed-latest-v2",
   "trade_date": "2026-08-21",
   "manifest": "v1x_feed/v1x_manifest_2026-08-21.json",
   "scan_file": "v1x_feed/v1x_scan_2026-08-21.csv",
   "scan_sha256": "2754076c82929b23b7b8ae330211842b90ec3c454cf9069698ed463debd025db",
   "scan_rows": 1131,
-  "updated_at_local": "2026-08-22T05:49:21"
+  "pipeline_success": true,
+  "db_last_date": "2026-08-21",
+  "updated_at_local": "2026-08-22T06:31:59"
 }
