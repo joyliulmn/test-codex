@@ -4,6 +4,9 @@ from datetime import date
 
 import akshare as ak
 import pandas as pd
+import requests
+from akshare.stock.cons import zh_sina_a_stock_payload, zh_sina_a_stock_url
+from akshare.utils import demjson
 from tenacity import retry, stop_after_attempt, wait_exponential
 
 SPOT_RENAME = {
@@ -20,6 +23,21 @@ SPOT_RENAME = {
     "振幅": "amplitude",
     "换手率": "turnover_rate",
     "涨跌额": "change_amount",
+}
+
+SINA_RAW_RENAME = {
+    "code": "code",
+    "name": "name",
+    "open": "open",
+    "high": "high",
+    "low": "low",
+    "trade": "close",
+    "settlement": "pre_close",
+    "changepercent": "pct_chg",
+    "volume": "volume",
+    "amount": "amount",
+    "turnoverratio": "turnover_rate",
+    "pricechange": "change_amount",
 }
 
 HIST_RENAME = {
@@ -74,6 +92,25 @@ def _normalize_sina_spot(df: pd.DataFrame) -> pd.DataFrame:
     return _numeric(df[keep].copy())
 
 
+def _normalize_sina_raw_spot(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.rename(columns=SINA_RAW_RENAME).copy()
+    required = ["code", "name", "open", "high", "low", "close", "volume", "turnover_rate"]
+    missing = [c for c in required if c not in df.columns]
+    if missing:
+        raise RuntimeError(f"Sina raw spot response missing required columns: {missing}")
+    df["code"] = (
+        df["code"].astype(str).str.lower().str.replace(r"^(sh|sz|bj)", "", regex=True).str.zfill(6)
+    )
+    # Sina reports volume in shares; Eastmoney reports hands. Keep the database in hands.
+    df["volume"] = pd.to_numeric(df["volume"], errors="coerce") / 100.0
+    df["trade_date"] = date.today().isoformat()
+    keep = [c for c in [*SINA_RAW_RENAME.values(), "trade_date"] if c in df.columns]
+    out = _numeric(df[keep].copy())
+    if out["turnover_rate"].notna().sum() == 0:
+        raise RuntimeError("Sina raw spot returned no usable turnover_rate values")
+    return out
+
+
 def _fetch_em_split() -> pd.DataFrame:
     """Fetch Eastmoney by exchange to avoid one very large full-market request."""
     parts = []
@@ -87,16 +124,36 @@ def _fetch_em_split_retry() -> pd.DataFrame:
     return _fetch_em_split()
 
 
+def _fetch_sina_raw() -> pd.DataFrame:
+    """Fetch Sina A-share snapshot directly, bypassing environment proxy and preserving turnoverratio."""
+    session = requests.Session()
+    session.trust_env = False
+    parts = []
+    for page in range(1, 100):
+        payload = zh_sina_a_stock_payload.copy()
+        payload["page"] = page
+        response = session.get(zh_sina_a_stock_url, params=payload, timeout=15)
+        response.raise_for_status()
+        rows = demjson.decode(response.text)
+        if not rows:
+            break
+        parts.append(pd.DataFrame(rows))
+    if not parts:
+        raise RuntimeError("Sina raw spot returned no rows")
+    return _normalize_sina_raw_spot(pd.concat(parts, ignore_index=True))
+
+
 @retry(stop=stop_after_attempt(2), wait=wait_exponential(multiplier=1, min=3, max=10), reraise=True)
 def _fetch_sina_retry() -> pd.DataFrame:
-    return _normalize_sina_spot(ak.stock_zh_a_spot())
+    return _fetch_sina_raw()
 
 
 def fetch_spot() -> pd.DataFrame:
     """Fetch one full-market A-share snapshot with provider fallback.
 
-    Primary path uses three smaller Eastmoney exchange calls; if that still times out,
-    fall back to Sina so one provider outage does not stop the local data pipeline.
+    Primary path uses three smaller Eastmoney exchange calls. If Eastmoney fails,
+    fall back to Sina's raw paginated endpoint, bypassing environment proxies and
+    preserving turnover_rate so a degraded provider cannot silently drop a V1.X field.
     """
     try:
         return _fetch_em_split_retry()
