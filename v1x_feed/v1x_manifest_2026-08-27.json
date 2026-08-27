@@ -13,7 +13,7 @@
   "scan_rows": 1388,
   "scan_min_trade_date": "2026-08-27",
   "scan_max_trade_date": "2026-08-27",
-  "scan_sha256": "e22b0a78e991962963e66ced0ae1aeeb0b8d0ffc78a81be40fb90d5142c3aafa",
+  "scan_sha256": "0e69643762147858bd6267cf13cab06c169337eb6b47724f5d8f846b7932420c",
   "required_columns_present": [
     "code",
     "name",
@@ -89,5 +89,5 @@
     }
   ],
   "published_from": "local Windows V1.X pipeline",
-  "generated_at_local": "2026-08-27T21:01:49"
+  "generated_at_local": "2026-08-27T21:29:18"
 }

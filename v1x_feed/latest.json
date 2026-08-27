@@ -8,7 +8,7 @@
   "today_rows": 5546,
   "manifest": "v1x_feed/v1x_manifest_2026-08-27.json",
   "scan_file": "v1x_feed/v1x_scan_2026-08-27.csv",
-  "scan_sha256": "e22b0a78e991962963e66ced0ae1aeeb0b8d0ffc78a81be40fb90d5142c3aafa",
+  "scan_sha256": "0e69643762147858bd6267cf13cab06c169337eb6b47724f5d8f846b7932420c",
   "scan_rows": 1388,
-  "updated_at_local": "2026-08-27T21:02:54"
+  "updated_at_local": "2026-08-27T21:29:23"
 }
