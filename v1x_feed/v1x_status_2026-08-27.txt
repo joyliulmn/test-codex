@@ -1,0 +1,11 @@
+V1.X REMOTE FEED STATUS
+trade_date=2026-08-27
+source_mode=unattended_daily
+pipeline_success=True
+recovery_verified=False
+db_last_date=2026-08-27
+today_rows=5546
+scan_rows=1388
+scan_min_trade_date=2026-08-27
+scan_max_trade_date=2026-08-27
+scan_sha256=e22b0a78e991962963e66ced0ae1aeeb0b8d0ffc78a81be40fb90d5142c3aafa
