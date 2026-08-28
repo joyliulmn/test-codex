@@ -1,14 +1,14 @@
 {
   "schema": "v1x-feed-latest-v3",
-  "trade_date": "2026-08-27",
+  "trade_date": "2026-08-28",
   "source_mode": "unattended_daily",
   "pipeline_success": true,
   "recovery_verified": false,
-  "db_last_date": "2026-08-27",
+  "db_last_date": "2026-08-28",
   "today_rows": 5546,
-  "manifest": "v1x_feed/v1x_manifest_2026-08-27.json",
-  "scan_file": "v1x_feed/v1x_scan_2026-08-27.csv",
-  "scan_sha256": "0e69643762147858bd6267cf13cab06c169337eb6b47724f5d8f846b7932420c",
-  "scan_rows": 1388,
-  "updated_at_local": "2026-08-27T21:29:23"
+  "manifest": "v1x_feed/v1x_manifest_2026-08-28.json",
+  "scan_file": "v1x_feed/v1x_scan_2026-08-28.csv",
+  "scan_sha256": "77832ec06307e92577fd331585343e2d4b251478971a27f6489112ac4f685c0b",
+  "scan_rows": 1391,
+  "updated_at_local": "2026-08-28T17:02:39"
 }
