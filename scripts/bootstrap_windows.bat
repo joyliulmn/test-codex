@@ -30,14 +30,16 @@ python -m pip install -e .
 if errorlevel 1 goto fail
 
 echo [4/6] Trying current A-share market snapshot...
+set "SNAPSHOT_READY=0"
 v1xdata update
 if errorlevel 1 goto spot_warn
+set "SNAPSHOT_READY=1"
 goto history
 
 :spot_warn
 echo.
-echo [WARN] Current snapshot could not be downloaded. Continuing with historical bootstrap.
-echo [WARN] The daily updater can retry the snapshot later.
+echo [WARN] Current snapshot could not be verified. Continuing with historical bootstrap only.
+echo [WARN] Scan will stay disabled until a later successful daily update.
 echo.
 
 :history
@@ -45,7 +47,12 @@ echo [5/6] Backfilling historical daily bars from 2020. This can take a long tim
 v1xdata bootstrap --start 20200101 --resume
 if errorlevel 1 goto fail
 
-echo [6/6] Running V1.X scan and database checks...
+echo [6/7] Revalidating the current snapshot after historical backfill...
+if "%SNAPSHOT_READY%"=="0" goto history_only_done
+v1xdata update
+if errorlevel 1 goto revalidation_fail
+
+echo [7/7] Running V1.X scan and database checks...
 v1xdata scan
 if errorlevel 1 goto fail
 v1xdata doctor
@@ -53,6 +60,23 @@ if errorlevel 1 goto fail
 
 echo.
 echo [SUCCESS] V1.X data environment initialized successfully.
+pause
+exit /b 0
+
+:revalidation_fail
+echo.
+echo [ERROR] Historical backfill changed the audited baseline and the final snapshot revalidation failed.
+echo [ERROR] No scan will be created. Review the update error and retry later.
+v1xdata doctor
+goto fail
+
+:history_only_done
+v1xdata doctor
+if errorlevel 1 goto fail
+echo.
+echo [PARTIAL SUCCESS] Historical backfill and database checks completed.
+echo [ACTION REQUIRED] After the next completed trading session, run scripts\daily_windows.bat.
+echo [ACTION REQUIRED] No scan was created because today's snapshot was not verified.
 pause
 exit /b 0
 

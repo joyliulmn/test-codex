@@ -2,9 +2,10 @@ from __future__ import annotations
 
 import argparse
 import json
+from pathlib import Path
 
 from .pipeline import bootstrap_history, doctor, update_today
-from .scan import run_scan
+from .scan import record_delivery_receipt, run_scan
 
 
 def main() -> None:
@@ -22,6 +23,16 @@ def main() -> None:
     p_scan = sub.add_parser("scan", help="Build latest V1.X first-pass candidate file")
     p_scan.add_argument("--lookback", type=int, default=80)
 
+    p_receipt = sub.add_parser(
+        "receipt", help="Record explicit proof that planned report rows were delivered"
+    )
+    p_receipt.add_argument("--scan", type=Path, required=True)
+    p_receipt.add_argument("--receipt-id", required=True)
+    p_receipt.add_argument("--delivered-at", default=None)
+    receipt_selection = p_receipt.add_mutually_exclusive_group(required=True)
+    receipt_selection.add_argument("--code", action="append", dest="codes")
+    receipt_selection.add_argument("--all-included", action="store_true")
+
     sub.add_parser("doctor", help="Inspect local database coverage")
 
     args = parser.parse_args()
@@ -35,6 +46,18 @@ def main() -> None:
         ))
     elif args.cmd == "scan":
         print(run_scan(args.lookback))
+    elif args.cmd == "receipt":
+        print(json.dumps(
+            record_delivery_receipt(
+                args.scan,
+                receipt_id=args.receipt_id,
+                delivered_codes=args.codes,
+                all_included=args.all_included,
+                delivered_at=args.delivered_at,
+            ),
+            ensure_ascii=False,
+            indent=2,
+        ))
     elif args.cmd == "doctor":
         print(json.dumps(doctor(), ensure_ascii=False, indent=2))
 
