@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "v1x-a-share-data"
-version = "0.1.0"
+version = "0.2.0"
 description = "V1.X full-market A-share OHLCV data layer and first-pass scanner"
 requires-python = ">=3.11"
 dependencies = [
@@ -12,7 +12,9 @@ dependencies = [
   "pandas>=2.2.0",
   "numpy>=1.26.0",
   "pyarrow>=16.0.0",
+  "requests>=2.31.0",
   "tenacity>=8.2.0",
+  "tzdata>=2024.1; platform_system == 'Windows'",
   "tqdm>=4.66.0",
 ]
 
