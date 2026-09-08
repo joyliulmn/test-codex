@@ -1,0 +1,929 @@
+{
+  "schema": "v1x-report-packet-v1",
+  "trade_date": "2026-09-07",
+  "status": "PASS",
+  "purpose": "CONNECTOR_SAFE_REPORT_GENERATION_WITH_UPSTREAM_FULL_SCAN_PROOF",
+  "source_scan_sha256": "7467383a58ef250dc956291f6c6b0e4fd8fe61408066805f19a6261f7d97e258",
+  "audit": "v1x_feed/report_packet/2026-09-07/audit.json",
+  "ledger": {
+    "rows": 1290,
+    "columns": [
+      "row_ordinal",
+      "source_row_sha256",
+      "code",
+      "name",
+      "scan_score",
+      "is_limit_up",
+      "is_first_limit_up",
+      "limit_up_streak",
+      "is_one_price_limit_up",
+      "price_attack_k",
+      "attack_registry",
+      "mandatory_accounting",
+      "accounting_reason",
+      "mandatory_compare_seed",
+      "mandatory_reason",
+      "discovery_lane",
+      "priority_rank",
+      "first_limit_up_rank",
+      "pre_ignition_window",
+      "report_included",
+      "report_reject_code",
+      "history_report_eligible",
+      "history_report_reject_code"
+    ],
+    "chunks": [
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_001.json",
+        "rows": 27,
+        "bytes": 6959,
+        "sha256": "525adf7b67eecf98f74fa1f9f7bb20ba8534f0dd5c172096f4651793fff0bd8f",
+        "first_key": 1,
+        "last_key": 27
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_002.json",
+        "rows": 28,
+        "bytes": 6763,
+        "sha256": "33996d8e5dbd18cc008813bbea4ea4b9b96ffa64acc6b5fb69edb0c5fa819fbb",
+        "first_key": 28,
+        "last_key": 55
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_003.json",
+        "rows": 27,
+        "bytes": 6910,
+        "sha256": "442648742f2f58e46c4e150d7e3589a7a4dc2e10a5daa528849cd2f985be9669",
+        "first_key": 56,
+        "last_key": 82
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_004.json",
+        "rows": 27,
+        "bytes": 6979,
+        "sha256": "7f3405f15f355ace022bda83f0b495db11d8d3d77e4dcef6619f51f27bdf21bb",
+        "first_key": 83,
+        "last_key": 109
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_005.json",
+        "rows": 27,
+        "bytes": 6819,
+        "sha256": "df19fa9c9c0b1429ae382e2b84f1f71ccaaedf9ce68854e890ad7593c9f7f39f",
+        "first_key": 110,
+        "last_key": 136
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_006.json",
+        "rows": 27,
+        "bytes": 6907,
+        "sha256": "6bca4b1185caff2e7b89826f30511f9a85c19256e2432ce1f9e2016c1d34b453",
+        "first_key": 137,
+        "last_key": 163
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_007.json",
+        "rows": 26,
+        "bytes": 6858,
+        "sha256": "8d110dc168154ca8f64c1656799a04e1dfe2e4b28824a2eb24a00d51712788e6",
+        "first_key": 164,
+        "last_key": 189
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_008.json",
+        "rows": 27,
+        "bytes": 6813,
+        "sha256": "1c9e48947654259140f0b5902100297eb5a07bbf2d2afbebac7e89596ad6e8ab",
+        "first_key": 190,
+        "last_key": 216
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_009.json",
+        "rows": 27,
+        "bytes": 6801,
+        "sha256": "0a4c13e481cf3aed4e1d4880e0273b42b956ba63b35ce00292886e8a08567c6d",
+        "first_key": 217,
+        "last_key": 243
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_010.json",
+        "rows": 27,
+        "bytes": 6805,
+        "sha256": "eae53ff7d96b14f55f875b8c57830f164dac5f7b27d5c5d8d2f8abb1f863bb69",
+        "first_key": 244,
+        "last_key": 270
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_011.json",
+        "rows": 27,
+        "bytes": 6912,
+        "sha256": "d7b85d1e370a1769747a6eb2fdbcc9bc9112b9687e8c4c8a626ee207560bc087",
+        "first_key": 271,
+        "last_key": 297
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_012.json",
+        "rows": 27,
+        "bytes": 6871,
+        "sha256": "3d2996a605ce73de7de86cfbf6147cf4b0d455ffad66cb997ccfc3ff08e0a9de",
+        "first_key": 298,
+        "last_key": 324
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_013.json",
+        "rows": 27,
+        "bytes": 6813,
+        "sha256": "41b8622fee33fd9093211b9fb87cdd62cb8bc0e81b5fc9a05b4db4385e96f623",
+        "first_key": 325,
+        "last_key": 351
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_014.json",
+        "rows": 27,
+        "bytes": 6816,
+        "sha256": "1617b763fa04f62f73bb41a06f9e00fda2861fa0f94e11f045226f005d86873d",
+        "first_key": 352,
+        "last_key": 378
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_015.json",
+        "rows": 27,
+        "bytes": 6807,
+        "sha256": "1a749c8c29cbfc24e593901796dd4defc42bb00735727b48c987bb7f3753a79f",
+        "first_key": 379,
+        "last_key": 405
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_016.json",
+        "rows": 27,
+        "bytes": 6787,
+        "sha256": "c0e4ef98669983c15afcf39555443267feb8d0fdbbcd09324089ff6cfe979505",
+        "first_key": 406,
+        "last_key": 432
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_017.json",
+        "rows": 27,
+        "bytes": 6807,
+        "sha256": "2bb3cb235ee34c558a636bb90a05069aca0adae80eaf96f1ecd943688a866a27",
+        "first_key": 433,
+        "last_key": 459
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_018.json",
+        "rows": 27,
+        "bytes": 6842,
+        "sha256": "3110f3d945e26c5ad9e9e8ad0f58a52adc96df33df6be8a2273a8eba2f6c78b5",
+        "first_key": 460,
+        "last_key": 486
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_019.json",
+        "rows": 26,
+        "bytes": 6869,
+        "sha256": "e2a773e3575768343cc6d771a4283f12d2bcafc3ffaa14a32ce1f13b806f561c",
+        "first_key": 487,
+        "last_key": 512
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_020.json",
+        "rows": 26,
+        "bytes": 6775,
+        "sha256": "5130f84c39ab5c709d13ea9ed71189529fc57efcf44aad8dd9d9cb3d17c03d74",
+        "first_key": 513,
+        "last_key": 538
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_021.json",
+        "rows": 26,
+        "bytes": 6760,
+        "sha256": "5fb3e89c2e3af7fd274a204d14ae825e052a1f5f8c9590b2340d8e2a93a2fe7f",
+        "first_key": 539,
+        "last_key": 564
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_022.json",
+        "rows": 26,
+        "bytes": 6779,
+        "sha256": "4797664755378717f2a7649452d84370998663d9ba8d4425b50a1cc67cf80d5c",
+        "first_key": 565,
+        "last_key": 590
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_023.json",
+        "rows": 26,
+        "bytes": 6754,
+        "sha256": "be5375b2505b2eba05c65bea298b66ab4fa92ddb511ac7a7e3c39f0c282a2a29",
+        "first_key": 591,
+        "last_key": 616
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_024.json",
+        "rows": 26,
+        "bytes": 6794,
+        "sha256": "321c739a1fed31535bb49ecb7e65d7781829432543744d497caca7aebb20c083",
+        "first_key": 617,
+        "last_key": 642
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_025.json",
+        "rows": 26,
+        "bytes": 6781,
+        "sha256": "0649f506519353f8fca74b462d06169fdeff1148eefa993f915997f5150544b2",
+        "first_key": 643,
+        "last_key": 668
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_026.json",
+        "rows": 26,
+        "bytes": 6786,
+        "sha256": "1dc095aa9a3b49ba160ca43d2249229c12a65c07b8f3860612d97b369b373c83",
+        "first_key": 669,
+        "last_key": 694
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_027.json",
+        "rows": 26,
+        "bytes": 6777,
+        "sha256": "03d156c3c662b78459b45244f4591ce1757c5ae3735099b316aad7414d35136e",
+        "first_key": 695,
+        "last_key": 720
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_028.json",
+        "rows": 26,
+        "bytes": 6773,
+        "sha256": "fde05f2da54e9201505428beed0382b6c8200d0b325f67b1f5bace2a7eaf7445",
+        "first_key": 721,
+        "last_key": 746
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_029.json",
+        "rows": 26,
+        "bytes": 6785,
+        "sha256": "d539ffb088ecb5fc52fbaedfade889d2c2a171e0a8e76776ea8ceefbb37df5e4",
+        "first_key": 747,
+        "last_key": 772
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_030.json",
+        "rows": 26,
+        "bytes": 6782,
+        "sha256": "0f3247e8a4a5ffc15550c3ca9b790c7b46d60bd3c1b3e0f6d592db404441c003",
+        "first_key": 773,
+        "last_key": 798
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_031.json",
+        "rows": 26,
+        "bytes": 6785,
+        "sha256": "8bec6120e2e6feb486380c93b621f5b1e7c5683667e3180511d78c270ea2a4b9",
+        "first_key": 799,
+        "last_key": 824
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_032.json",
+        "rows": 26,
+        "bytes": 6772,
+        "sha256": "22ea2a451eb82e380a989479cbcea582cc64fad3c641cd1b3d759fa15f26402b",
+        "first_key": 825,
+        "last_key": 850
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_033.json",
+        "rows": 26,
+        "bytes": 6793,
+        "sha256": "d9c5c0470589495bc15f5891e3503abdf7829872320998db0d767271de109358",
+        "first_key": 851,
+        "last_key": 876
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_034.json",
+        "rows": 26,
+        "bytes": 6781,
+        "sha256": "a14a8f049bbb2ec5330555d4e6f84c5a6f28d22e8016a0382bb996c6acb9b274",
+        "first_key": 877,
+        "last_key": 902
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_035.json",
+        "rows": 26,
+        "bytes": 6782,
+        "sha256": "ea4897136216aef52f25de18278079b3baa4582917bf866daa9b86add2bef4d5",
+        "first_key": 903,
+        "last_key": 928
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_036.json",
+        "rows": 26,
+        "bytes": 6782,
+        "sha256": "7db7137212ecbef2a12a80e865177d52d6543358ffc85647750ce9bdf28403f7",
+        "first_key": 929,
+        "last_key": 954
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_037.json",
+        "rows": 26,
+        "bytes": 6793,
+        "sha256": "0aaa5f5fca6ef6537e0d269aa9e8ffe0a92a39754ed891070351c3dfd09bb987",
+        "first_key": 955,
+        "last_key": 980
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_038.json",
+        "rows": 26,
+        "bytes": 6809,
+        "sha256": "6073a950cc285c0b2f5d61e3d33f9b12e266abc2f4ff0d4af025a9138715e519",
+        "first_key": 981,
+        "last_key": 1006
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_039.json",
+        "rows": 26,
+        "bytes": 6828,
+        "sha256": "6bf02898c601ea434c445c1b2ded069fb0b78af274761f9e896eb2ffed83d63f",
+        "first_key": 1007,
+        "last_key": 1032
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_040.json",
+        "rows": 26,
+        "bytes": 6846,
+        "sha256": "208c2098553ee769e8f938f3fc243496ef178447a342b5e8fef7f293ecd1bbcc",
+        "first_key": 1033,
+        "last_key": 1058
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_041.json",
+        "rows": 26,
+        "bytes": 6837,
+        "sha256": "465d538194ab8dea73e6c34ccedead388b36eeb9ba44fd235f1e5fe03679f94c",
+        "first_key": 1059,
+        "last_key": 1084
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_042.json",
+        "rows": 26,
+        "bytes": 6838,
+        "sha256": "6a4bed25813116c664cbbd7c8376520309b144cc64b86aeb3dd2c93a9e90d0fb",
+        "first_key": 1085,
+        "last_key": 1110
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_043.json",
+        "rows": 26,
+        "bytes": 6834,
+        "sha256": "8c85d397ce0ee8809d4d1c6a6f9156a7858931181a46783f631c717b53042c85",
+        "first_key": 1111,
+        "last_key": 1136
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_044.json",
+        "rows": 26,
+        "bytes": 6843,
+        "sha256": "13b9e81e2236ef88ff6526a9fa5a0d4dfb6b7a389fdb424f93a2356affa6954e",
+        "first_key": 1137,
+        "last_key": 1162
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_045.json",
+        "rows": 26,
+        "bytes": 6839,
+        "sha256": "08c7ac39661eb680eb89a9cbc90b93ff40f5dfc325dc7b4f0f55fab0b898ec48",
+        "first_key": 1163,
+        "last_key": 1188
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_046.json",
+        "rows": 26,
+        "bytes": 6829,
+        "sha256": "eb0c8b217fb6fc631e4590ab1e432327ae8fc3bbb649ed1866762421d723580d",
+        "first_key": 1189,
+        "last_key": 1214
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_047.json",
+        "rows": 26,
+        "bytes": 6809,
+        "sha256": "e4f4e9f7ee08baabe5281b5aea0e2b7242d5af4ef6914e290da5d8196a64fb7f",
+        "first_key": 1215,
+        "last_key": 1240
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_048.json",
+        "rows": 26,
+        "bytes": 6837,
+        "sha256": "7f2373e1fb4a4234a31ac979f98efe9a5717245607328d2b864cbc3595f3322a",
+        "first_key": 1241,
+        "last_key": 1266
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/ledger/ledger_049.json",
+        "rows": 24,
+        "bytes": 6345,
+        "sha256": "a41d995cda137126de0c17cbd5a1c94eab43dec4147182a08c6e6341623f3885",
+        "first_key": 1267,
+        "last_key": 1290
+      }
+    ]
+  },
+  "detail": {
+    "rows": 118,
+    "columns": [
+      "row_ordinal",
+      "source_row_sha256",
+      "code",
+      "name",
+      "close",
+      "pct_chg",
+      "amount",
+      "turnover_rate",
+      "fire_k",
+      "attack_k",
+      "days_since_attack",
+      "retains_attack_close",
+      "center_not_falling_5d",
+      "volume_contracting_5d",
+      "range_contracting_5d",
+      "pre_ignition_window",
+      "ret_5d",
+      "prior_ret_5d",
+      "delta_net_displacement_5d",
+      "ret_10d",
+      "path_efficiency_5d",
+      "prior_path_efficiency_5d",
+      "delta_path_efficiency_5d",
+      "path_efficiency_10d",
+      "volume_intensity_5d",
+      "prior_volume_intensity_5d",
+      "delta_volume_intensity_5d",
+      "vp_conversion_efficiency_5d",
+      "prior_vp_conversion_efficiency_5d",
+      "delta_vp_conversion_efficiency_5d",
+      "near_or_breaks_20d_high",
+      "price_efficiency_improving",
+      "quiet_rising_efficiency",
+      "effective_pre_close",
+      "pre_close_source",
+      "close_to_close_pct",
+      "board_bucket",
+      "is_limit_up",
+      "is_first_limit_up",
+      "limit_up_streak",
+      "is_one_price_limit_up",
+      "price_attack_k",
+      "days_since_price_attack",
+      "last_price_attack_date",
+      "price_attack_close",
+      "retains_price_attack_close",
+      "priority_score",
+      "quality_evidence_count",
+      "attack_registry",
+      "mandatory_accounting",
+      "accounting_reason",
+      "discovery_lane",
+      "mandatory_compare_seed",
+      "mandatory_reason",
+      "review_status",
+      "global_rank",
+      "priority_rank",
+      "lane_rank",
+      "first_limit_up_rank",
+      "permission_status",
+      "report_included",
+      "report_reject_code",
+      "price_attack_age_market_sessions",
+      "price_attack_span_reviewed_suspension_count",
+      "price_attack_span_unexplained_gap_count",
+      "price_attack_span_unknown_reference_rows",
+      "price_attack_acceptance_usable",
+      "legacy_attack_age_market_sessions",
+      "legacy_attack_span_reviewed_suspension_count",
+      "legacy_attack_span_unexplained_gap_count",
+      "legacy_attack_span_unknown_reference_rows",
+      "legacy_attack_acceptance_usable",
+      "pre_ignition_semantic_usable",
+      "history_report_eligible",
+      "history_report_reject_code",
+      "history_semantic_reason_codes",
+      "history_scope_missing_bar_count",
+      "history_scope_reviewed_suspension_count",
+      "history_scope_unexplained_gap_count",
+      "history_reference_unknown_rows",
+      "history_ledger_status",
+      "historical_sentinels_passed",
+      "scan_version"
+    ],
+    "chunks": [
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_001.json",
+        "rows": 5,
+        "bytes": 6714,
+        "sha256": "a9a38efa6b4341fae1619d24680428e250e148583ae2d3f9f7349a5e5ce413fe",
+        "first_key": 1,
+        "last_key": 5
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_002.json",
+        "rows": 5,
+        "bytes": 6633,
+        "sha256": "acb71f25bc29b67bed739b4f5d102ee6fcd6e6c28b35f64a9fc672a795ef4a00",
+        "first_key": 6,
+        "last_key": 11
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_003.json",
+        "rows": 5,
+        "bytes": 6785,
+        "sha256": "ec43cf0e62225466b85c6cff7069a25b115a870bdec4f853bd094fa85d2f5f2a",
+        "first_key": 12,
+        "last_key": 16
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_004.json",
+        "rows": 5,
+        "bytes": 6750,
+        "sha256": "16b4d7b2fa4e2460d47fe87ba33169c7fdba760e74acc7581b8e632e8fc77d18",
+        "first_key": 17,
+        "last_key": 21
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_005.json",
+        "rows": 5,
+        "bytes": 6677,
+        "sha256": "548797e7b661aa6d592c63df3c95ba91b71e43a8382d40c1f25c39860f4806b1",
+        "first_key": 22,
+        "last_key": 26
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_006.json",
+        "rows": 5,
+        "bytes": 6527,
+        "sha256": "bac31ccca367e3ad0ea564032b66bc549fd83f584b95cdef88f8bae3f93d624c",
+        "first_key": 27,
+        "last_key": 31
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_007.json",
+        "rows": 5,
+        "bytes": 6504,
+        "sha256": "940b3390f6b38fc2155810053cd6b4c96f9b18ebaa292aef52222ac4789c94f7",
+        "first_key": 32,
+        "last_key": 39
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_008.json",
+        "rows": 5,
+        "bytes": 6586,
+        "sha256": "b291e7d88ccb675031412f8e548d3e32ede4ec390d5600697bc72175d5d02281",
+        "first_key": 40,
+        "last_key": 73
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_009.json",
+        "rows": 5,
+        "bytes": 6756,
+        "sha256": "333ab858323b183c7b14e3be8e40f93baa8dbfbc3d750317ad8ff1525cdd1eb0",
+        "first_key": 89,
+        "last_key": 93
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_010.json",
+        "rows": 5,
+        "bytes": 6755,
+        "sha256": "f595368f0beb739a3f66504b8bc327e78797da2593b1faf56b42c79dca0b3b03",
+        "first_key": 94,
+        "last_key": 98
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_011.json",
+        "rows": 5,
+        "bytes": 6721,
+        "sha256": "41912b6e22b5e68f35fb2d7e202bff312a29a04810ff8cb80bac06d1b6b82565",
+        "first_key": 99,
+        "last_key": 150
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_012.json",
+        "rows": 5,
+        "bytes": 6823,
+        "sha256": "d3ae552d5dd5cb5c6343a960fed2aef55ebb7490abeccca16af8898aada79fe0",
+        "first_key": 151,
+        "last_key": 171
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_013.json",
+        "rows": 5,
+        "bytes": 6802,
+        "sha256": "042e457a634ad57f7360fa8ea4a7ff5d5f9cd4e9482c54eb813e0bdb00741a7f",
+        "first_key": 172,
+        "last_key": 176
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_014.json",
+        "rows": 5,
+        "bytes": 6800,
+        "sha256": "f8715d950158b95da21b6f838cc0122d0e309694f5bd4a3e5edfa14d54d7c617",
+        "first_key": 177,
+        "last_key": 181
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_015.json",
+        "rows": 5,
+        "bytes": 6708,
+        "sha256": "67cfb957559ec43fd425f5eb89fc9b08ff1310e450d37c4eeab9f506cea3ebed",
+        "first_key": 182,
+        "last_key": 265
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_016.json",
+        "rows": 5,
+        "bytes": 6697,
+        "sha256": "30191fb15727b803d3d072a4064dec3851f4fff6f29f42ed5215b5c2c7336923",
+        "first_key": 266,
+        "last_key": 281
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_017.json",
+        "rows": 5,
+        "bytes": 6689,
+        "sha256": "e5a60c8a27c7006e2fedc771d5831fae90efb2fad9d1110742ba45b347ffcb67",
+        "first_key": 282,
+        "last_key": 286
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_018.json",
+        "rows": 5,
+        "bytes": 6766,
+        "sha256": "1ffde3d167bac8743332d68386275770dabcf8ee9012d1014d2b429d663c6995",
+        "first_key": 287,
+        "last_key": 291
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_019.json",
+        "rows": 5,
+        "bytes": 6770,
+        "sha256": "0bf5574d1e3ba4ea934940ed57e0ae28fa5aa4e7510304d35775ab06cb17f4e3",
+        "first_key": 292,
+        "last_key": 296
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_020.json",
+        "rows": 5,
+        "bytes": 6716,
+        "sha256": "53ebda8ed07874dd143b78f21dc2b5dee01147eb12c4571e663f32c4f9afb444",
+        "first_key": 297,
+        "last_key": 301
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_021.json",
+        "rows": 5,
+        "bytes": 6748,
+        "sha256": "316d95114197abf4d2350bc6397ebc4721c034317b69167a258ef11607583661",
+        "first_key": 302,
+        "last_key": 307
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_022.json",
+        "rows": 5,
+        "bytes": 6697,
+        "sha256": "569d4015635fdac0911e2465634d65fa97ad24eb3cc44754b465da51067f8921",
+        "first_key": 308,
+        "last_key": 414
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_023.json",
+        "rows": 5,
+        "bytes": 6692,
+        "sha256": "9cad4557c0428f751b6adf3f016b0cd36a69d9c7d2a7293c612151a4e483a0e3",
+        "first_key": 416,
+        "last_key": 607
+      },
+      {
+        "path": "v1x_feed/report_packet/2026-09-07/detail/detail_024.json",
+        "rows": 3,
+        "bytes": 4867,
+        "sha256": "d39f8614ba7a46c69e6418fc25311186c18a59d99db222de6bed07e3440a71bb",
+        "first_key": 608,
+        "last_key": 617
+      }
+    ]
+  },
+  "sets": {
+    "registry": {
+      "rows": 456,
+      "chunks": [
+        {
+          "path": "v1x_feed/report_packet/2026-09-07/sets/registry_001.json",
+          "rows": 79,
+          "bytes": 6926,
+          "sha256": "7fdf05dd448e6264f6c56f83148d96bca3f094906a396167b94f131e08c4b716",
+          "first_key": 2,
+          "last_key": 103
+        },
+        {
+          "path": "v1x_feed/report_packet/2026-09-07/sets/registry_002.json",
+          "rows": 75,
+          "bytes": 6996,
+          "sha256": "77145b311312da7914a16b098fbcb130af192647ad7ceab9314631a15eca41a6",
+          "first_key": 104,
+          "last_key": 193
+        },
+        {
+          "path": "v1x_feed/report_packet/2026-09-07/sets/registry_003.json",
+          "rows": 76,
+          "bytes": 6942,
+          "sha256": "2c28012a6f238875c3ca54790da8cf6ec5630cb9bd8b2f06503b5c97c2a51ecb",
+          "first_key": 194,
+          "last_key": 269
+        },
+        {
+          "path": "v1x_feed/report_packet/2026-09-07/sets/registry_004.json",
+          "rows": 78,
+          "bytes": 6980,
+          "sha256": "66649f36b3c3d14f7acfe5f2a9266755e9b7fef423e681e0ed25d0c6bed3a8c3",
+          "first_key": 270,
+          "last_key": 347
+        },
+        {
+          "path": "v1x_feed/report_packet/2026-09-07/sets/registry_005.json",
+          "rows": 77,
+          "bytes": 6951,
+          "sha256": "8b1992d1be872f810546d6bdb76b3521b39f52b549782af975ac8de473f89592",
+          "first_key": 348,
+          "last_key": 424
+        },
+        {
+          "path": "v1x_feed/report_packet/2026-09-07/sets/registry_006.json",
+          "rows": 71,
+          "bytes": 6519,
+          "sha256": "a4eb9d8220d16f400e3431ed7a65028b9eceb8bae221d6e0b7185a1797b16e01",
+          "first_key": 425,
+          "last_key": 1216
+        }
+      ]
+    },
+    "first_limit": {
+      "rows": 80,
+      "chunks": [
+        {
+          "path": "v1x_feed/report_packet/2026-09-07/sets/first_limit_001.json",
+          "rows": 75,
+          "bytes": 6926,
+          "sha256": "932a80fd20f599bb123e5458059388bc567f4e6f33d5388a79d5741a7a8d5dcf",
+          "first_key": 2,
+          "last_key": 416
+        },
+        {
+          "path": "v1x_feed/report_packet/2026-09-07/sets/first_limit_002.json",
+          "rows": 5,
+          "bytes": 578,
+          "sha256": "f9add026afdf7437b5e8272c51f7af3b24ecc32d892998436f506943fa5c3516",
+          "first_key": 417,
+          "last_key": 609
+        }
+      ]
+    },
+    "streak": {
+      "rows": 13,
+      "chunks": [
+        {
+          "path": "v1x_feed/report_packet/2026-09-07/sets/streak_001.json",
+          "rows": 13,
+          "bytes": 1309,
+          "sha256": "ed63d22e7b2a70b21e693fd6bc4d856e99da6971c6f390595835e6e33749a9ea",
+          "first_key": 19,
+          "last_key": 607
+        }
+      ]
+    },
+    "seed": {
+      "rows": 64,
+      "chunks": [
+        {
+          "path": "v1x_feed/report_packet/2026-09-07/sets/seed_001.json",
+          "rows": 64,
+          "bytes": 6343,
+          "sha256": "b14399692264934b909aa73e45af0d5a5def75ef88e24093237b4fd12b276514",
+          "first_key": 1,
+          "last_key": 608
+        }
+      ]
+    },
+    "pre_ignition": {
+      "rows": 4,
+      "chunks": [
+        {
+          "path": "v1x_feed/report_packet/2026-09-07/sets/pre_ignition_001.json",
+          "rows": 4,
+          "bytes": 526,
+          "sha256": "0098f29f11a19d945b25c174ff0e62a94a531df41ce30c82d655f8327267408e",
+          "first_key": 1,
+          "last_key": 150
+        }
+      ]
+    },
+    "columns": [
+      "row_ordinal",
+      "code",
+      "name",
+      "scan_score",
+      "discovery_lane",
+      "priority_rank",
+      "first_limit_up_rank",
+      "mandatory_reason",
+      "report_included",
+      "report_reject_code"
+    ]
+  },
+  "max_connector_file_bytes": 7000,
+  "generated_at_local": "2026-09-08T12:04:04",
+  "git_staged_sha256": {
+    "v1x_feed/report_packet/2026-09-07/audit.json": "d7e66ba5475ea898c86250d320032f0028d731c40ae55ffa851780ea591140e9",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_001.json": "a9a38efa6b4341fae1619d24680428e250e148583ae2d3f9f7349a5e5ce413fe",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_002.json": "acb71f25bc29b67bed739b4f5d102ee6fcd6e6c28b35f64a9fc672a795ef4a00",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_003.json": "ec43cf0e62225466b85c6cff7069a25b115a870bdec4f853bd094fa85d2f5f2a",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_004.json": "16b4d7b2fa4e2460d47fe87ba33169c7fdba760e74acc7581b8e632e8fc77d18",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_005.json": "548797e7b661aa6d592c63df3c95ba91b71e43a8382d40c1f25c39860f4806b1",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_006.json": "bac31ccca367e3ad0ea564032b66bc549fd83f584b95cdef88f8bae3f93d624c",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_007.json": "940b3390f6b38fc2155810053cd6b4c96f9b18ebaa292aef52222ac4789c94f7",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_008.json": "b291e7d88ccb675031412f8e548d3e32ede4ec390d5600697bc72175d5d02281",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_009.json": "333ab858323b183c7b14e3be8e40f93baa8dbfbc3d750317ad8ff1525cdd1eb0",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_010.json": "f595368f0beb739a3f66504b8bc327e78797da2593b1faf56b42c79dca0b3b03",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_011.json": "41912b6e22b5e68f35fb2d7e202bff312a29a04810ff8cb80bac06d1b6b82565",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_012.json": "d3ae552d5dd5cb5c6343a960fed2aef55ebb7490abeccca16af8898aada79fe0",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_013.json": "042e457a634ad57f7360fa8ea4a7ff5d5f9cd4e9482c54eb813e0bdb00741a7f",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_014.json": "f8715d950158b95da21b6f838cc0122d0e309694f5bd4a3e5edfa14d54d7c617",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_015.json": "67cfb957559ec43fd425f5eb89fc9b08ff1310e450d37c4eeab9f506cea3ebed",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_016.json": "30191fb15727b803d3d072a4064dec3851f4fff6f29f42ed5215b5c2c7336923",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_017.json": "e5a60c8a27c7006e2fedc771d5831fae90efb2fad9d1110742ba45b347ffcb67",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_018.json": "1ffde3d167bac8743332d68386275770dabcf8ee9012d1014d2b429d663c6995",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_019.json": "0bf5574d1e3ba4ea934940ed57e0ae28fa5aa4e7510304d35775ab06cb17f4e3",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_020.json": "53ebda8ed07874dd143b78f21dc2b5dee01147eb12c4571e663f32c4f9afb444",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_021.json": "316d95114197abf4d2350bc6397ebc4721c034317b69167a258ef11607583661",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_022.json": "569d4015635fdac0911e2465634d65fa97ad24eb3cc44754b465da51067f8921",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_023.json": "9cad4557c0428f751b6adf3f016b0cd36a69d9c7d2a7293c612151a4e483a0e3",
+    "v1x_feed/report_packet/2026-09-07/detail/detail_024.json": "d39f8614ba7a46c69e6418fc25311186c18a59d99db222de6bed07e3440a71bb",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_001.json": "525adf7b67eecf98f74fa1f9f7bb20ba8534f0dd5c172096f4651793fff0bd8f",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_002.json": "33996d8e5dbd18cc008813bbea4ea4b9b96ffa64acc6b5fb69edb0c5fa819fbb",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_003.json": "442648742f2f58e46c4e150d7e3589a7a4dc2e10a5daa528849cd2f985be9669",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_004.json": "7f3405f15f355ace022bda83f0b495db11d8d3d77e4dcef6619f51f27bdf21bb",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_005.json": "df19fa9c9c0b1429ae382e2b84f1f71ccaaedf9ce68854e890ad7593c9f7f39f",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_006.json": "6bca4b1185caff2e7b89826f30511f9a85c19256e2432ce1f9e2016c1d34b453",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_007.json": "8d110dc168154ca8f64c1656799a04e1dfe2e4b28824a2eb24a00d51712788e6",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_008.json": "1c9e48947654259140f0b5902100297eb5a07bbf2d2afbebac7e89596ad6e8ab",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_009.json": "0a4c13e481cf3aed4e1d4880e0273b42b956ba63b35ce00292886e8a08567c6d",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_010.json": "eae53ff7d96b14f55f875b8c57830f164dac5f7b27d5c5d8d2f8abb1f863bb69",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_011.json": "d7b85d1e370a1769747a6eb2fdbcc9bc9112b9687e8c4c8a626ee207560bc087",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_012.json": "3d2996a605ce73de7de86cfbf6147cf4b0d455ffad66cb997ccfc3ff08e0a9de",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_013.json": "41b8622fee33fd9093211b9fb87cdd62cb8bc0e81b5fc9a05b4db4385e96f623",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_014.json": "1617b763fa04f62f73bb41a06f9e00fda2861fa0f94e11f045226f005d86873d",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_015.json": "1a749c8c29cbfc24e593901796dd4defc42bb00735727b48c987bb7f3753a79f",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_016.json": "c0e4ef98669983c15afcf39555443267feb8d0fdbbcd09324089ff6cfe979505",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_017.json": "2bb3cb235ee34c558a636bb90a05069aca0adae80eaf96f1ecd943688a866a27",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_018.json": "3110f3d945e26c5ad9e9e8ad0f58a52adc96df33df6be8a2273a8eba2f6c78b5",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_019.json": "e2a773e3575768343cc6d771a4283f12d2bcafc3ffaa14a32ce1f13b806f561c",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_020.json": "5130f84c39ab5c709d13ea9ed71189529fc57efcf44aad8dd9d9cb3d17c03d74",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_021.json": "5fb3e89c2e3af7fd274a204d14ae825e052a1f5f8c9590b2340d8e2a93a2fe7f",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_022.json": "4797664755378717f2a7649452d84370998663d9ba8d4425b50a1cc67cf80d5c",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_023.json": "be5375b2505b2eba05c65bea298b66ab4fa92ddb511ac7a7e3c39f0c282a2a29",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_024.json": "321c739a1fed31535bb49ecb7e65d7781829432543744d497caca7aebb20c083",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_025.json": "0649f506519353f8fca74b462d06169fdeff1148eefa993f915997f5150544b2",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_026.json": "1dc095aa9a3b49ba160ca43d2249229c12a65c07b8f3860612d97b369b373c83",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_027.json": "03d156c3c662b78459b45244f4591ce1757c5ae3735099b316aad7414d35136e",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_028.json": "fde05f2da54e9201505428beed0382b6c8200d0b325f67b1f5bace2a7eaf7445",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_029.json": "d539ffb088ecb5fc52fbaedfade889d2c2a171e0a8e76776ea8ceefbb37df5e4",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_030.json": "0f3247e8a4a5ffc15550c3ca9b790c7b46d60bd3c1b3e0f6d592db404441c003",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_031.json": "8bec6120e2e6feb486380c93b621f5b1e7c5683667e3180511d78c270ea2a4b9",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_032.json": "22ea2a451eb82e380a989479cbcea582cc64fad3c641cd1b3d759fa15f26402b",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_033.json": "d9c5c0470589495bc15f5891e3503abdf7829872320998db0d767271de109358",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_034.json": "a14a8f049bbb2ec5330555d4e6f84c5a6f28d22e8016a0382bb996c6acb9b274",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_035.json": "ea4897136216aef52f25de18278079b3baa4582917bf866daa9b86add2bef4d5",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_036.json": "7db7137212ecbef2a12a80e865177d52d6543358ffc85647750ce9bdf28403f7",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_037.json": "0aaa5f5fca6ef6537e0d269aa9e8ffe0a92a39754ed891070351c3dfd09bb987",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_038.json": "6073a950cc285c0b2f5d61e3d33f9b12e266abc2f4ff0d4af025a9138715e519",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_039.json": "6bf02898c601ea434c445c1b2ded069fb0b78af274761f9e896eb2ffed83d63f",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_040.json": "208c2098553ee769e8f938f3fc243496ef178447a342b5e8fef7f293ecd1bbcc",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_041.json": "465d538194ab8dea73e6c34ccedead388b36eeb9ba44fd235f1e5fe03679f94c",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_042.json": "6a4bed25813116c664cbbd7c8376520309b144cc64b86aeb3dd2c93a9e90d0fb",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_043.json": "8c85d397ce0ee8809d4d1c6a6f9156a7858931181a46783f631c717b53042c85",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_044.json": "13b9e81e2236ef88ff6526a9fa5a0d4dfb6b7a389fdb424f93a2356affa6954e",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_045.json": "08c7ac39661eb680eb89a9cbc90b93ff40f5dfc325dc7b4f0f55fab0b898ec48",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_046.json": "eb0c8b217fb6fc631e4590ab1e432327ae8fc3bbb649ed1866762421d723580d",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_047.json": "e4f4e9f7ee08baabe5281b5aea0e2b7242d5af4ef6914e290da5d8196a64fb7f",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_048.json": "7f2373e1fb4a4234a31ac979f98efe9a5717245607328d2b864cbc3595f3322a",
+    "v1x_feed/report_packet/2026-09-07/ledger/ledger_049.json": "a41d995cda137126de0c17cbd5a1c94eab43dec4147182a08c6e6341623f3885",
+    "v1x_feed/report_packet/2026-09-07/sets/first_limit_001.json": "932a80fd20f599bb123e5458059388bc567f4e6f33d5388a79d5741a7a8d5dcf",
+    "v1x_feed/report_packet/2026-09-07/sets/first_limit_002.json": "f9add026afdf7437b5e8272c51f7af3b24ecc32d892998436f506943fa5c3516",
+    "v1x_feed/report_packet/2026-09-07/sets/pre_ignition_001.json": "0098f29f11a19d945b25c174ff0e62a94a531df41ce30c82d655f8327267408e",
+    "v1x_feed/report_packet/2026-09-07/sets/registry_001.json": "7fdf05dd448e6264f6c56f83148d96bca3f094906a396167b94f131e08c4b716",
+    "v1x_feed/report_packet/2026-09-07/sets/registry_002.json": "77145b311312da7914a16b098fbcb130af192647ad7ceab9314631a15eca41a6",
+    "v1x_feed/report_packet/2026-09-07/sets/registry_003.json": "2c28012a6f238875c3ca54790da8cf6ec5630cb9bd8b2f06503b5c97c2a51ecb",
+    "v1x_feed/report_packet/2026-09-07/sets/registry_004.json": "66649f36b3c3d14f7acfe5f2a9266755e9b7fef423e681e0ed25d0c6bed3a8c3",
+    "v1x_feed/report_packet/2026-09-07/sets/registry_005.json": "8b1992d1be872f810546d6bdb76b3521b39f52b549782af975ac8de473f89592",
+    "v1x_feed/report_packet/2026-09-07/sets/registry_006.json": "a4eb9d8220d16f400e3431ed7a65028b9eceb8bae221d6e0b7185a1797b16e01",
+    "v1x_feed/report_packet/2026-09-07/sets/seed_001.json": "b14399692264934b909aa73e45af0d5a5def75ef88e24093237b4fd12b276514",
+    "v1x_feed/report_packet/2026-09-07/sets/streak_001.json": "ed63d22e7b2a70b21e693fd6bc4d856e99da6971c6f390595835e6e33749a9ea"
+  },
+  "git_packet_root_sha256": "9add3d1c75e8c42eec91f897a9562e46151966ebbdda2d3135884160d0d05caa"
+}

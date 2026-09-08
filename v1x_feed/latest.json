@@ -19,5 +19,11 @@
   "report_payload_rows": 1290,
   "report_detail_rows": 118,
   "report_payload_root_sha256": "3e4dcf601f1104ce3303549a4af83d4cd2805307c70049fd8f149b25d9528cf1",
-  "report_payload_updated_at_local": "2026-09-08T10:53:03"
+  "report_payload_updated_at_local": "2026-09-08T10:53:03",
+  "report_packet_ready": true,
+  "report_packet_index": "v1x_feed/report_packet/2026-09-07/index.json",
+  "report_packet_audit": "v1x_feed/report_packet/2026-09-07/audit.json",
+  "report_packet_source_scan_sha256": "7467383a58ef250dc956291f6c6b0e4fd8fe61408066805f19a6261f7d97e258",
+  "report_packet_updated_at_local": "2026-09-08T12:04:24",
+  "report_packet_max_file_bytes": 7000
 }
