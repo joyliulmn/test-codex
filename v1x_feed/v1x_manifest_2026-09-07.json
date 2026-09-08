@@ -259,5 +259,18 @@
     }
   ],
   "published_from": "local Windows V1.X formal-history-guard release",
-  "generated_at_local": "2026-09-08T09:56:57"
+  "generated_at_local": "2026-09-08T09:56:57",
+  "report_payload": {
+    "schema": "v1x-report-payload-v1",
+    "status": "PASS",
+    "index": "v1x_feed/report_payload/2026-09-07/index.json",
+    "source_scan_sha256": "7467383a58ef250dc956291f6c6b0e4fd8fe61408066805f19a6261f7d97e258",
+    "ledger_rows": 1290,
+    "ledger_chunk_count": 26,
+    "detail_rows": 118,
+    "detail_chunk_count": 9,
+    "git_payload_root_sha256": "3e4dcf601f1104ce3303549a4af83d4cd2805307c70049fd8f149b25d9528cf1"
+  },
+  "report_payload_ready": true,
+  "report_payload_updated_at_local": "2026-09-08T10:53:03"
 }
