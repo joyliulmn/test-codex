@@ -1,11 +1,21 @@
-V1.X REMOTE FEED STATUS
+V1.X FORMAL REMOTE FEED STATUS
 trade_date=2026-09-07
 source_mode=unattended_daily
 pipeline_success=True
-recovery_verified=False
+postrun_revalidated=True
+history_repair_verified=True
+release_authorized=True
 db_last_date=2026-09-07
-today_rows=5548
-scan_rows=1269
-scan_min_trade_date=2026-09-07
-scan_max_trade_date=2026-09-07
-scan_sha256=19afc78bcf43da5ee48a2921d0fcefc6dcafd0c326c200d721299dc65e090c3a
+today_rows=5549
+scan_rows=1290
+scan_sha256=7467383a58ef250dc956291f6c6b0e4fd8fe61408066805f19a6261f7d97e258
+coverage_status=PASS
+input_coverage_status=PASS
+registry=456/456
+limit_up=94/94
+first_limit=80/80
+streak=13/13
+seed=64/64
+silent_drop_count=0
+report_included_total=118
+historical_sentinels_passed=True

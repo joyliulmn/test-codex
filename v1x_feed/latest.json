@@ -4,11 +4,14 @@
   "source_mode": "unattended_daily",
   "pipeline_success": true,
   "recovery_verified": false,
+  "postrun_revalidated": true,
+  "history_repair_verified": true,
+  "release_authorized": true,
   "db_last_date": "2026-09-07",
-  "today_rows": 5548,
+  "today_rows": 5549,
   "manifest": "v1x_feed/v1x_manifest_2026-09-07.json",
   "scan_file": "v1x_feed/v1x_scan_2026-09-07.csv",
-  "scan_sha256": "19afc78bcf43da5ee48a2921d0fcefc6dcafd0c326c200d721299dc65e090c3a",
-  "scan_rows": 1269,
-  "updated_at_local": "2026-09-07T19:28:59"
+  "scan_sha256": "7467383a58ef250dc956291f6c6b0e4fd8fe61408066805f19a6261f7d97e258",
+  "scan_rows": 1290,
+  "updated_at_local": "2026-09-08T09:56:57"
 }
