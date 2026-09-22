@@ -1,0 +1,53 @@
+{
+  "schema": "v1x-report-packet-v2",
+  "trade_date": "2026-09-22",
+  "status": "PASS",
+  "source_scan_sha256": "cfcd0ae2ace4caa7fa3e02eff5d639915d60ef573e6240548268b66c69b0f0d0",
+  "audit": "v1x_feed/report_packet/2026-09-22/audit.json",
+  "ledger": {
+    "rows": 1492,
+    "directory": "v1x_feed/report_packet/2026-09-22/ledger",
+    "chunk_count": 60
+  },
+  "detail": {
+    "rows": 93,
+    "directory": "v1x_feed/report_packet/2026-09-22/detail",
+    "chunk_count": 19
+  },
+  "sets": {
+    "registry": {
+      "rows": 235,
+      "chunk_count": 4
+    },
+    "limit_up": {
+      "rows": 65,
+      "chunk_count": 2
+    },
+    "first_limit": {
+      "rows": 41,
+      "chunk_count": 1
+    },
+    "streak": {
+      "rows": 24,
+      "chunk_count": 1
+    },
+    "seed": {
+      "rows": 70,
+      "chunk_count": 2
+    },
+    "mandatory": {
+      "rows": 65,
+      "chunk_count": 2
+    },
+    "pre_ignition": {
+      "rows": 8,
+      "chunk_count": 1
+    },
+    "price_attack": {
+      "rows": 235,
+      "chunk_count": 4
+    }
+  },
+  "max_connector_file_bytes": 7000,
+  "generated_at_local": "2026-09-22T17:37:50+08:00"
+}
